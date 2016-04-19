@@ -1,0 +1,82 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/root_submit_layout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        >
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/testing_tv_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="申请提货"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/fragment_font_16sp" />
+
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/down_imgbtn_close"
+            android:layout_width="@dimen/common_48dp"
+            android:layout_height="@dimen/common_48dp"
+            android:layout_gravity="left|center"
+            android:drawableLeft="@drawable/btn_back"
+            android:gravity="center_vertical" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:background="@color/under_bar_line" />
+
+    <LinearLayout
+        android:id="@+id/ll_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:drawableLeft="@drawable/ic_gift"
+            android:paddingLeft="48dp"
+            android:drawablePadding="-48dp"
+            android:id="@+id/btn_goods_des"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#fff"
+            android:textSize="@dimen/fragment_font_14sp"
+            android:text="礼券信息" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:drawableLeft="@drawable/sumbit_for_gift"
+            android:id="@+id/btn_eidt"
+            android:paddingLeft="48dp"
+            android:drawablePadding="-48dp"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#fff"
+            android:textSize="@dimen/fragment_font_14sp"
+            android:text="收货信息"
+            android:textColor="#000" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none" />
+
+</LinearLayout>

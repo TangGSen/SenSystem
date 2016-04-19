@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tabButtonItemName">
+        <item>礼券</item>
+        <item>客服</item>
+
+    </string-array>
+
+</resources>

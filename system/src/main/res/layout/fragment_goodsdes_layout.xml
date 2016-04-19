@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:scrollbars="none"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/common_8dp"
+        android:layout_marginRight="@dimen/common_8dp">
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_card_num"
+            style="@style/TextViewStyleFont_1"
+            android:text="礼券卡号："/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_card_content"
+            style="@style/TextViewStyleFont_2"
+            android:layout_toRightOf="@id/tv_card_num"
+            android:text="1001"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_gift_name"
+            style="@style/TextViewStyleFont_1"
+            android:layout_below="@+id/tv_card_content"
+            android:text="礼券商品："/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_gift_name_content"
+            style="@style/TextViewStyleFont_2"
+            android:layout_below="@+id/tv_card_content"
+            android:layout_toRightOf="@id/tv_card_num"
+            android:text="1002"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_gift_des"
+            style="@style/TextViewStyleFont_1"
+            android:layout_below="@+id/tv_gift_name_content"
+            android:text="商品描述："/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_gift_des_content"
+            style="@style/TextViewStyleFont_2"
+            android:layout_below="@+id/tv_gift_name_content"
+            android:layout_toRightOf="@id/tv_card_num"
+            android:text="@string/test"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_gift_img"
+            style="@style/TextViewStyleFont_1"
+            android:layout_below="@+id/tv_gift_des_content"
+            android:text="商品图片："/>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/img_gift"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/tv_gift_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="?actionBarSize"
+            android:layout_marginTop="@dimen/common_8dp"
+            android:background="@mipmap/icon"
+            />
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

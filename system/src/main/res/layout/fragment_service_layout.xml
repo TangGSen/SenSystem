@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:id="@+id/root_layout_service"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/common_40dp">
+
+
+        <android.support.v7.widget.AppCompatTextView
+           style="@style/TextViewStyle"
+           android:id="@+id/tv_contact"
+           android:background="@drawable/shap_gb"
+            android:drawableTop="@drawable/tab_service_normal"
+            android:text="联系客服"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_after_service"
+            style="@style/TextViewStyle"
+            android:background="@drawable/shap_gb"
+            android:layout_centerHorizontal="true"
+            android:drawableTop="@drawable/after_service"
+            android:text="售后服务"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
