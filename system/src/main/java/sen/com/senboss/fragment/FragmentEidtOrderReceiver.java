@@ -1,9 +1,11 @@
 package sen.com.senboss.fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatSpinner;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +18,18 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import sen.com.senboss.R;
 import sen.com.senboss.base.BaseFragment;
+import sen.com.senboss.calender.CalendarDialog;
 
 /**
  * Created by Administrator on 2016/4/16.
@@ -46,6 +53,8 @@ public class FragmentEidtOrderReceiver extends BaseFragment {
     AppCompatSpinner mSpCity;//城市下拉控件
     @Bind(R.id.sp_arear)
     AppCompatSpinner mSpArea;//地区下拉控件
+     @Bind(R.id.choose_date)
+     AppCompatTextView choose_date;//地区下拉控件
 
     private JSONObject mJsonObj;//把全国的省市区的信息以json的格式保存，解析完成后赋值为null
 
@@ -87,6 +96,7 @@ public class FragmentEidtOrderReceiver extends BaseFragment {
 
     @Override
     protected void initData() {
+        initChooseData();
         initJsonData();
         parseJsonData();
         int selectPro=0;//有传输数据时
@@ -114,6 +124,14 @@ public class FragmentEidtOrderReceiver extends BaseFragment {
          * 设置，省，市，县，的适配器，进行动态设置其中的值  end
          */
         setupViewsListener();
+    }
+
+    private void initChooseData() {
+        if (choose_date!=null){
+            Date date=new Date();
+            SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+            choose_date.setText(format.format(date));
+        }
     }
 
     /**
@@ -315,5 +333,24 @@ public class FragmentEidtOrderReceiver extends BaseFragment {
         mJsonObj = null;
     }
 
+
+    @OnClick(R.id.choose_date)
+    public void chooseDate(){
+        final Calendar calendar = Calendar.getInstance();
+        AlertDialog dialog = new CalendarDialog().getCalendarDialog(mActivity, true, true, Calendar.getInstance().get(Calendar.YEAR) + 1, 1950, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), new CalendarDialog.OnSelectDateListener() {
+
+            @Override
+            public void onSelectDate(long time, int year, int month, int day, boolean isLunar) {
+               // calendar.setTimeInMillis(time);
+                Date d = new Date(time);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                if (choose_date!=null){
+                    choose_date.setText(sdf.format(d)+"");
+                }
+            }
+        });
+        dialog.show();
+
+    }
 
 }
