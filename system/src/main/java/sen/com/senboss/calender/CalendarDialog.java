@@ -28,6 +28,9 @@ import sen.com.senboss.R;
  */
 public class CalendarDialog {
     public static final String SHARED_PREFER = "winson_calendar_view";
+
+
+
 	/**
 	 * 创建一个日历选择对话框
 	 *
@@ -82,7 +85,7 @@ public class CalendarDialog {
 					// 算出本月所在位置
 					currentPagerPos = timeData.size() - 1;
 				}
-
+				;
 			}
 		}
 
@@ -125,7 +128,6 @@ public class CalendarDialog {
 								calendar.get(Calendar.MONTH),
 								calendar.get(Calendar.DAY_OF_MONTH), false);
 					}
-
 					alertDialog.dismiss();
 				}
 			}
