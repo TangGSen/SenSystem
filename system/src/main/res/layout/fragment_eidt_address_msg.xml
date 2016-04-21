@@ -130,6 +130,7 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_submit"
             android:layout_below="@+id/user_address"
             android:layout_marginTop="@dimen/common_8dp"
             android:layout_width="match_parent"

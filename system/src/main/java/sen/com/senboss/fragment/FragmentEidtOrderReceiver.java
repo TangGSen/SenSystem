@@ -3,14 +3,16 @@ package sen.com.senboss.fragment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
@@ -40,9 +42,12 @@ import sen.com.senboss.calender.CalendarDialog;
 public class FragmentEidtOrderReceiver extends BaseFragment {
 
     private View rootView;
-    //    @Bind(R.id.root_layout)
-//    LinearLayout root_layout;
-//    @Bind(R.id.tv_submit_order)
+
+    @Bind(R.id.btn_submit)
+    AppCompatButton btn_submit;
+    @Bind(R.id.user_name_phone)
+    CardView user_name_phone;
+    //    @Bind(R.id.tv_submit_order)
 //    AppCompatTextView tv_submit_order;
 //    @Bind(R.id.tv_check_order)
 //    AppCompatTextView tv_check_order;
@@ -77,16 +82,19 @@ public class FragmentEidtOrderReceiver extends BaseFragment {
     private Boolean isFirstLord = true;//判断是不是最近进入对话框
     private Boolean ifSetFirstAddress = true;//判断是否已经设置了，初始的详细地址
 
+    private GlobalLayoutLinstener mGlobalLayoutLinstener;
+
     private final int INIT_CITY_JSON = 0;
     private AlertDialog dialog;
-    private Handler mHandler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
+//    private Handler mHandler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//
+//
+//        }
+//    };
 
-
-        }
-    };
     @Override
     protected void dealAdaptationToPhone() {
 
@@ -102,23 +110,44 @@ public class FragmentEidtOrderReceiver extends BaseFragment {
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_eidt_address_msg, container, false);
         ButterKnife.bind(this, rootView);
+        mGlobalLayoutLinstener = new GlobalLayoutLinstener();
+        rootView.getViewTreeObserver().addOnGlobalLayoutListener(mGlobalLayoutLinstener );
 
         return rootView;
     }
 
+    private  class GlobalLayoutLinstener implements ViewTreeObserver.OnGlobalLayoutListener {
+
+        @Override
+        public void onGlobalLayout() {
+            Rect r = new Rect();
+            rootView.getWindowVisibleDisplayFrame(r);
+            int heightDiff = rootView.getRootView().getHeight() - (r.bottom - r.top);
+            if (heightDiff > 100) { // if more than 100 pixels, its probably a keyboard...
+                //ok now we know the keyboard is up...
+                btn_submit.setVisibility(View.GONE);
+                user_name_phone.setVisibility(View.GONE);
+
+            } else {
+                btn_submit.setVisibility(View.VISIBLE);
+                user_name_phone.setVisibility(View.VISIBLE);
+
+            }
+        }
+    }
     public void initCanlenderView() {
         final Calendar calendar = Calendar.getInstance();
         dialog = new CalendarDialog().getCalendarDialog(mActivity, true, true, Calendar.getInstance().get(Calendar.YEAR) + 1, 1950, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), new CalendarDialog.OnSelectDateListener() {
-                    @Override
-                    public void onSelectDate(long time, int year, int month, int day, boolean isLunar) {
-                        // calendar.setTimeInMillis(time);
-                        Date d = new Date(time);
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                        if (choose_date != null) {
-                            choose_date.setText(sdf.format(d) + "");
-                        }
-                    }
-                });
+            @Override
+            public void onSelectDate(long time, int year, int month, int day, boolean isLunar) {
+                // calendar.setTimeInMillis(time);
+                Date d = new Date(time);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                if (choose_date != null) {
+                    choose_date.setText(sdf.format(d) + "");
+                }
+            }
+        });
     }
 
     @Override
@@ -361,7 +390,7 @@ public class FragmentEidtOrderReceiver extends BaseFragment {
 
     @OnClick(R.id.choose_date)
     public void chooseDate() {
-        if (dialog==null){
+        if (dialog == null) {
             initCanlenderView();
         }
 
@@ -369,12 +398,27 @@ public class FragmentEidtOrderReceiver extends BaseFragment {
 
     }
 
-    
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (dialog!=null && dialog.isShowing())
+            rootView.getViewTreeObserver().removeGlobalOnLayoutListener(mGlobalLayoutLinstener);
+        if (dialog != null && dialog.isShowing())
             dialog.dismiss();
     }
+
+
+//    @Override
+//    public void onSizeChange(boolean paramBoolean, int w, int h) {
+//        Log.e("sen","执行么");
+//        if (paramBoolean) {// 键盘弹出时
+//            root_resize_layout.setPadding(0, -10, 0, 0);
+//            btn_submit.setVisibility(View.GONE);
+//            user_name_phone.setVisibility(View.GONE);
+//        } else { // 键盘隐藏时
+//            root_resize_layout.setPadding(0, 0, 0, 0);
+//            btn_submit.setVisibility(View.VISIBLE);
+//            user_name_phone.setVisibility(View.VISIBLE);
+//        }
+//    }
 }
