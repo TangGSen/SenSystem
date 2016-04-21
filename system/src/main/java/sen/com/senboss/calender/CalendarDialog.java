@@ -82,7 +82,7 @@ public class CalendarDialog {
 					// 算出本月所在位置
 					currentPagerPos = timeData.size() - 1;
 				}
-				;
+
 			}
 		}
 
@@ -125,6 +125,7 @@ public class CalendarDialog {
 								calendar.get(Calendar.MONTH),
 								calendar.get(Calendar.DAY_OF_MONTH), false);
 					}
+
 					alertDialog.dismiss();
 				}
 			}
