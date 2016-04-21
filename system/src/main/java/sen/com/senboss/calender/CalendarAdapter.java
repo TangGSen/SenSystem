@@ -94,7 +94,7 @@ public class CalendarAdapter extends BaseAdapter {
                     && calendar.get(Calendar.MONTH) == selectM
                     && calendar.get(Calendar.DAY_OF_MONTH) == selectD) {
 
-                convertView.setBackgroundResource(R.drawable.shape_rect_red);
+                convertView.setBackgroundResource(R.drawable.shape_canlender_rect_green);
                 holder.lunarTv.setTextColor(Color.WHITE);
                 holder.calendarTv.setTextColor(Color.WHITE);
             } else {
