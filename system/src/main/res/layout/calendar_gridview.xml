@@ -8,7 +8,7 @@
     android:horizontalSpacing="1dp"
     android:verticalSpacing="1dp"
     android:background="#f2f2f2"
-    android:listSelector="@drawable/btn_rect_gray"
+    android:listSelector="@drawable/selected_btn_rect_gray"
     android:stretchMode="columnWidth">
 
 </GridView>

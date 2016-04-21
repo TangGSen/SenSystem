@@ -5,7 +5,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:padding="8dp"
-    android:background="@drawable/btn_rect_gray"
+    android:background="@drawable/selected_btn_rect_gray"
     android:orientation="vertical">
 
     <TextView

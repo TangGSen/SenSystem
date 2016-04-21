@@ -20,7 +20,6 @@
         </activity>
         <activity android:name=".activity.SubmitOrderActivity"
                   android:launchMode="singleTask"
-                  android:windowSoftInputMode="adjustPan"
                   android:screenOrientation="portrait" />
     </application>
 

@@ -129,6 +129,16 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
+        <android.support.v7.widget.AppCompatButton
+            android:layout_below="@+id/user_address"
+            android:layout_marginTop="@dimen/common_8dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/selected_btn_submit"
+            android:textSize="@dimen/fragment_font_14sp"
+            android:textColor="@drawable/selected_submit_text_color"
+            android:text="提交"
+            android:layout_height="@dimen/common_38dp"/>
+
 
 
 

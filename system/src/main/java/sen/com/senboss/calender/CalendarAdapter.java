@@ -98,7 +98,7 @@ public class CalendarAdapter extends BaseAdapter {
                 holder.lunarTv.setTextColor(Color.WHITE);
                 holder.calendarTv.setTextColor(Color.WHITE);
             } else {
-                convertView.setBackgroundResource(R.drawable.btn_rect_gray);
+                convertView.setBackgroundResource(R.drawable.selected_btn_rect_gray);
                 if (isShowLunar) {
                     //选择农历
                     if (isSelectLunar) {

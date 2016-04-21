@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
@@ -75,8 +77,16 @@ public class FragmentEidtOrderReceiver extends BaseFragment {
     private Boolean isFirstLord = true;//判断是不是最近进入对话框
     private Boolean ifSetFirstAddress = true;//判断是否已经设置了，初始的详细地址
 
+    private final int INIT_CITY_JSON = 0;
     private AlertDialog dialog;
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
 
+
+        }
+    };
     @Override
     protected void dealAdaptationToPhone() {
 
@@ -358,6 +368,8 @@ public class FragmentEidtOrderReceiver extends BaseFragment {
         dialog.show();
 
     }
+
+    
 
     @Override
     public void onDestroy() {

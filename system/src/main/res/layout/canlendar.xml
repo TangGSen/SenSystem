@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#ffffff"
-            android:listSelector="@drawable/btn_rect_gray"
+            android:listSelector="@drawable/selected_btn_rect_gray"
             android:numColumns="4"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
