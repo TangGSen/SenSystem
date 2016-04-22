@@ -6,10 +6,13 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -61,7 +64,15 @@ public class FragmentEidtOrderReceiver extends BaseFragment {
     @Bind(R.id.sp_arear)
     AppCompatSpinner mSpArea;//地区下拉控件
     @Bind(R.id.choose_date)
-    AppCompatTextView choose_date;//地区下拉控件
+    AppCompatTextView choose_date;
+    @Bind(R.id.et_address_detail)
+    AppCompatEditText et_address_detail;
+    @Bind(R.id.et_user_phone)
+    AppCompatEditText et_user_phone;
+    @Bind(R.id.et_user_name)
+    AppCompatEditText et_user_name;
+
+    private boolean isNeedSizeChange;
 
     private JSONObject mJsonObj;//把全国的省市区的信息以json的格式保存，解析完成后赋值为null
 
@@ -110,31 +121,48 @@ public class FragmentEidtOrderReceiver extends BaseFragment {
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_eidt_address_msg, container, false);
         ButterKnife.bind(this, rootView);
+        //双重保险让它显示隐藏
         mGlobalLayoutLinstener = new GlobalLayoutLinstener();
-        rootView.getViewTreeObserver().addOnGlobalLayoutListener(mGlobalLayoutLinstener );
+        rootView.getViewTreeObserver().addOnGlobalLayoutListener(mGlobalLayoutLinstener);
+        // 那个获取焦点的无效，就这个好使
+        et_address_detail.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                isNeedSizeChange =true;
+                return false;
+            }
+        });
 
         return rootView;
     }
 
-    private  class GlobalLayoutLinstener implements ViewTreeObserver.OnGlobalLayoutListener {
+    private class GlobalLayoutLinstener implements ViewTreeObserver.OnGlobalLayoutListener {
 
         @Override
         public void onGlobalLayout() {
+
             Rect r = new Rect();
             rootView.getWindowVisibleDisplayFrame(r);
             int heightDiff = rootView.getRootView().getHeight() - (r.bottom - r.top);
+            Log.e("sen","is"+isNeedSizeChange);
             if (heightDiff > 100) { // if more than 100 pixels, its probably a keyboard...
                 //ok now we know the keyboard is up...
-                btn_submit.setVisibility(View.GONE);
-                user_name_phone.setVisibility(View.GONE);
+                if (isNeedSizeChange) {
+                    Log.e("sen","隐藏了");
+                    btn_submit.setVisibility(View.GONE);
+                    user_name_phone.setVisibility(View.GONE);
+                    isNeedSizeChange =!isNeedSizeChange;
+                }
 
             } else {
                 btn_submit.setVisibility(View.VISIBLE);
                 user_name_phone.setVisibility(View.VISIBLE);
 
             }
+
         }
     }
+
     public void initCanlenderView() {
         final Calendar calendar = Calendar.getInstance();
         dialog = new CalendarDialog().getCalendarDialog(mActivity, true, true, Calendar.getInstance().get(Calendar.YEAR) + 1, 1950, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), new CalendarDialog.OnSelectDateListener() {
@@ -402,23 +430,10 @@ public class FragmentEidtOrderReceiver extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-            rootView.getViewTreeObserver().removeGlobalOnLayoutListener(mGlobalLayoutLinstener);
+        rootView.getViewTreeObserver().removeGlobalOnLayoutListener(mGlobalLayoutLinstener);
         if (dialog != null && dialog.isShowing())
             dialog.dismiss();
     }
 
 
-//    @Override
-//    public void onSizeChange(boolean paramBoolean, int w, int h) {
-//        Log.e("sen","执行么");
-//        if (paramBoolean) {// 键盘弹出时
-//            root_resize_layout.setPadding(0, -10, 0, 0);
-//            btn_submit.setVisibility(View.GONE);
-//            user_name_phone.setVisibility(View.GONE);
-//        } else { // 键盘隐藏时
-//            root_resize_layout.setPadding(0, 0, 0, 0);
-//            btn_submit.setVisibility(View.VISIBLE);
-//            user_name_phone.setVisibility(View.VISIBLE);
-//        }
-//    }
 }
