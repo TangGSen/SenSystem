@@ -12,6 +12,7 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -121,16 +122,16 @@ public class FragmentEidtOrderReceiver extends BaseFragment {
         rootView = inflater.inflate(R.layout.fragment_eidt_address_msg, container, false);
         ButterKnife.bind(this, rootView);
         //双重保险让它显示隐藏
-//        mGlobalLayoutLinstener = new GlobalLayoutLinstener();
-//        rootView.getViewTreeObserver().addOnGlobalLayoutListener(mGlobalLayoutLinstener);
-//        // 那个获取焦点的无效，就这个好使
-//        et_address_detail.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                isNeedSizeChange =true;
-//                return false;
-//            }
-//        });
+        mGlobalLayoutLinstener = new GlobalLayoutLinstener();
+        rootView.getViewTreeObserver().addOnGlobalLayoutListener(mGlobalLayoutLinstener);
+        // 那个获取焦点的无效，就这个好使
+        et_address_detail.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                isNeedSizeChange =true;
+                return false;
+            }
+        });
 
         return rootView;
     }
