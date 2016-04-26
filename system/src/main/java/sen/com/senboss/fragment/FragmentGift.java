@@ -18,7 +18,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sen.com.senboss.R;
-import sen.com.senboss.activity.SubmitOrderActivity;
+import sen.com.senboss.activity.LoginActivity;
 import sen.com.senboss.base.BaseFragment;
 import sen.com.senboss.tools.ResourcesUtils;
 
@@ -128,7 +128,7 @@ public class FragmentGift extends BaseFragment {
     //申请提货
     @OnClick(R.id.tv_submit_order)
     public void onSumbitOrder() {
-        Intent intent = new Intent(mActivity, SubmitOrderActivity.class);
+        Intent intent = new Intent(mActivity, LoginActivity.class);
         mActivity.startActivity(intent);
     }
 

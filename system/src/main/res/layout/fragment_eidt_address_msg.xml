@@ -26,7 +26,7 @@
                 android:layout_height="match_parent">
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/text_input_username"
+                    android:id="@+id/input_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -39,9 +39,10 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/text_input_username">
+                    android:layout_below="@+id/input_username">
 
                     <android.support.v7.widget.AppCompatEditText
                         android:id="@+id/et_user_phone"
@@ -94,7 +95,7 @@
 
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/address_detail"
+                    android:id="@+id/input_address_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/layout_spinner">
@@ -107,7 +108,7 @@
                         android:textSize="@dimen/fragment_font_14sp"/>
                 </android.support.design.widget.TextInputLayout>
                 <android.support.v7.widget.AppCompatTextView
-                    android:layout_below="@+id/address_detail"
+                    android:layout_below="@+id/input_address_detail"
                     android:layout_marginTop="@dimen/common_8dp"
                     android:id="@+id/tv_choose_date"
                     android:layout_width="match_parent"
@@ -136,12 +137,14 @@
             android:id="@+id/btn_submit"
             android:layout_below="@+id/user_address"
             android:layout_marginTop="@dimen/common_8dp"
+            android:layout_height="@dimen/common_38dp"
+            android:layout_marginBottom="?actionBarSize"
             android:layout_width="match_parent"
             android:background="@drawable/selected_btn_submit"
             android:textSize="@dimen/fragment_font_14sp"
             android:textColor="@drawable/selected_submit_text_color"
             android:text="提交"
-            android:layout_height="@dimen/common_38dp"/>
+            />
 
 
 
