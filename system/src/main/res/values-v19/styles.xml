@@ -10,4 +10,12 @@
         <item name="android:windowTranslucentStatus">true</item>
 
     </style>
+
+    <style name="LoginActivityTheme" parent="AppTheme">
+
+        <item name="colorPrimary">@color/tab_bgcolor</item>
+        <item name="colorPrimaryDark">@color/tab_bgcolor</item>
+        <item name="colorAccent">@color/tab_bgcolor</item>
+
+    </style>
 </resources>

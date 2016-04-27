@@ -308,7 +308,6 @@ public class FragmentEidtOrderReceiver extends BaseFragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
 
             }
         });

@@ -4,6 +4,7 @@
     <!--添加可以向外拨打电话的权限  -->
     <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
     <application
+        android:name=".base.SenApplication"
         android:allowBackup="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
@@ -25,7 +26,9 @@
 
         <activity android:name=".activity.LoginActivity"
                   android:launchMode="singleTask"
-                  android:windowSoftInputMode="adjustResize"
+                  android:theme="@style/LoginActivityTheme"
+                  android:windowSoftInputMode="adjustResize|stateHidden"
+                  android:configChanges="orientation|keyboardHidden"
                   android:screenOrientation="portrait" />
     </application>
 
